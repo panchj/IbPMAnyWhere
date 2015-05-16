@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>项目内容管理</title>
+    <link rel="stylesheet" href="../css/themes/default/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="../Assets/css/jqm-demos.css">
+    <link rel="stylesheet" href="../css/listview-grid.css">
+    <script src="../js/jquery.js"></script>
+    <script src="../Assets/js/index.js"></script>
+    <script src="../js/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+    <div data-role="page" class="jqm-demos" data-quicklinks="true">
+        <!-- 页头 -->
+        <div data-role="header" data-position="fixed">
+            <h2>项目内容管理</h2>
+            <a href="#nav-panel" data-icon="bullets" data-iconpos="notext">Menu</a>
+            <a href="#navigatorForWorklace" data-icon="home" data-iconpos="notext">Add</a>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#" id="skull" data-icon="clock" class="ui-btn-active">时间段</a></li>
+                    <li><a href="#" id="email" data-icon="grid">合同</a></li>
+                    <li><a href="#" id="skull" data-icon="user">成员</a></li>
+                    <li><a href="#" id="beer" data-icon="gear">结构</a></li>
+                    <li><a href="#" id="coffee" data-icon="shop">文件库</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- 页头结束 -->
+
+        <div role="main" class="ui-content jqm-content jqm-fullwidth">
+            <h1>待构建的内容</h1>
+            <p>This is a typical page that has two buttons in the header bar that open panels. The left panel has the push display mode. The right panel opens as overlay. For both panels we set <code>data-position-fixed="true"</code>. We also set position fixed for the header and footer on this page.</p>
+            <p>The left panel contains a long menu to demonstrate that the framework will check the panel contents height and unfixes the panel so its content can be scrolled. In the right panel there is a short form that shows the fixed positioning.</p>
+
+        </div>
+
+        <div data-role="panel" data-position-fixed="true" data-display="push" data-theme="a" id="nav-panel">
+            <ul data-role="listview">
+                <li data-icon="delete"><a href="#" data-rel="close">关闭项目列表内容</a></li>
+                <li><a href="#panel-fixed-page2">项目名称</a></li>
+                <li><a href="#panel-fixed-page2">项目名称</a></li>
+                <li><a href="#panel-fixed-page2">项目名称</a></li>
+                <li><a href="#panel-fixed-page2">项目名称</a></li>
+                <li><a href="#panel-fixed-page2">项目名称</a></li>
+                <li><a href="#panel-fixed-page2">项目名称</a></li>
+            </ul>
+        </div>
+
+        <div data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a" id="navigatorForWorklace" class="jqm-navmenu-panel">
+            <ul data-role="listview">
+                <li data-icon="home"><h3>请选择工作入口</h3> </li>
+                <li><a href="../appPortal.html">返回首页</a></li>
+                <li><a href="../appContent/worktask.html">工作任务管理</a></li>
+                <li><a href="../appContent/message.html">企业内部消息管理</a></li>
+                <li><a href="../appContent/workroom.html">工作聊天室</a></li>
+                <li><a href="../appContent/personalinfo.html">个人资料管理</a></li>
+            </ul>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <p>底部提示操作导航</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

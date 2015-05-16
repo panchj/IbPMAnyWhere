@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>智能建筑工程项目管理</title>
+
+    <link rel="stylesheet" href="css/themes/default/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="Assets/css/jqm-demos.css">
+    <link rel="stylesheet" href="css/listview-grid.css">
+    <script src="js/jquery.js"></script>
+    <script src="Assets/js/index.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<body>
+    <div data-role="page" class="jqm-demos">
+
+        <!-- 页头 -->
+        <div data-role="header" class="jqm-header">
+            <h2><img src="appImgs/lbpm-banner-logo.png" alt="智能建筑工程项目管理"></h2>
+            <!--<a href="#mainNavigator" data-icon="bars" data-iconpos="notext">Menu</a>-->
+            <a href="#" class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-search ui-nodisc-icon ui-alt-icon ui-btn-right">Search</a>
+        </div>
+        <!-- 页头结束 -->
+
+        <!-- 主页内容 -->
+        <div role="main" style="margin-top: 10px">
+            <div class="my-page" style="padding: 6px">
+                <ul data-role="listview" data-inset="true">
+                    <li>
+                        <a href="appContent/message.html">
+                            <img src="appImgs/workMessage.png" class="ui-li-thumb">
+                            <h1 style="font-size:20px;text-align: left;margin-top: -3px">协同工作管理</h1>
+                            <p>提取的根据系统后台推过来的说明数据。</p>
+                            <!--<p class="ui-li-aside">待处理</p>-->
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="appImgs/workTask.png" class="ui-li-thumb">
+                            <h1 style="font-size:20px;text-align: left;margin-top: -3px">工作任务管理</h1>
+                            <p>提取的根据系统后台推过来的说明数据。</p>
+                            <!--<p class="ui-li-aside">待处理</p>-->
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../appContent/project.html">
+                            <img src="appImgs/projectInfo.png" class="ui-li-thumb">
+                            <h1 style="font-size:20px;text-align: left;margin-top: -3px">项目信息管理</h1>
+                            <p>提取的根据系统后台推过来的说明数据。</p>
+                            <!--<p class="ui-li-aside">待处理</p>-->
+                        </a>
+                    </li>
+                    <li>
+                        <a href="appContent/workroom.html">
+                            <img src="appImgs/workRoom.png" class="ui-li-thumb">
+                            <h1 style="font-size:20px;text-align: left;margin-top: -3px">工作聊天室</h1>
+                            <p>提取的根据系统后台推过来的说明数据。</p>
+                            <!--<p class="ui-li-aside">待处理</p>-->
+                        </a>
+                    </li>
+                    <li>
+                        <a href="appContent/personalinfo.html">
+                            <img src="appImgs/personalInfo.png" class="ui-li-thumb">
+                            <h1 style="font-size:20px;text-align: left;margin-top: -3px">个人资料管理</h1>
+                            <p>提取的根据系统后台推过来的说明数据。</p>
+                            <!--<p class="ui-li-aside">待处理</p>-->
+                        </a>
+                    </li>
+                </ul>                
+            </div>
+
+        </div>
+        <!-- 主页内容结束 -->
+
+        <!-- 左侧导航菜单 -->
+        <!--
+        <div data-role="panel" class="jqm-navmenu-panel" data-position="left" data-display="overlay" data-theme="a" id="mainNavigator">
+            <ul class="jqm-list ui-alt-icon ui-nodisc-icon">
+                <li data-filtertext="" data-icon="home"><h3>请选择工作入口</h3> </li>
+                <li data-filtertext=""><a href="../appContent/message.html">协同工作管理</a></li>
+                <li data-filtertext=""><a href="../appContent/worktask.html">工作任务管理</a></li>
+                <li data-filtertext=""><a href="../appContent/project.html">项目内容管理</a></li>
+                <li data-filtertext=""><a href="../appContent/workroom.html">工作聊天室</a></li>
+                <li data-filtertext=""><a href="../appContent/personalinfo.html">个人资料管理</a></li>
+            </ul>
+        </div>
+        -->
+        <!-- 左侧导航菜单结束 -->
+
+        <!-- 右侧查询操作导航 -->
+        <div data-role="panel" class="jqm-search-panel" data-position="right" data-display="overlay" data-theme="a">
+            <div class="jqm-search">
+                <ul class="jqm-list" data-filter-placeholder="请输入关键词。" data-filter-reveal="true"></ul>
+            </div>
+        </div>
+        <!-- 右侧查询操作导航结束 -->
+
+        <!-- 页脚内容 -->
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="jqm-footer">
+            <p style="font-size:10px">智能建筑工程项目管理 <span class="">1.00</span>  版权所有 2014 柳州明天</p>
+        </div>
+    </div>
+</body>
+</html>
