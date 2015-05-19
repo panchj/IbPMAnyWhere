@@ -1,140 +1,70 @@
+/*
+ * 这是使用 WebSql 在浏览器中构建的内置数据库来做一些前端特征限制的数据存储的东西
+ * 1.创建数据库 NncqWebDB ；
+ * 2.创建存储本地用户的数据库表 LogonLocalUser；
+ * 3.相应的 CURD 方法；
+ */
+
 var webStorage = {};
-
 webStorage.webSql = function () {
-
     var _this = this;
-
-    //数据库
+    // 数据库
     var _dataBase;
 
-    //打开数据库连接或者创建数据库
+    // 打开数据库连接或者创建数据库
     this.openDatabase = function () {
-        //alert("数据库创建失败001！");
         if (!!_dataBase) {
             return _dataBase;
         }
-        _dataBase = openDatabase("student", "1.0", "学生库", 1024 * 1024, function () { });
-
-        if (!_dataBase) {
-            alert("数据库创建失败！");
-        } else {
-            alert("数据库创建成功！");
-        }
+        _dataBase = openDatabase("NncqWebDB", "1.0", "内置页面数据库", 1024 * 1024, function () { });
         return _dataBase;
-
     },
 
-    //创建数据表
+    // 创建数据表
     this.createTable = function () {
-
         var dataBase = _this.openDatabase();
         // 创建表
         dataBase.transaction(function (tx) {
-            tx.executeSql(
-        "create table if not exists stu (id REAL UNIQUE, name TEXT)",
-        [],
-        function () { alert('创建stu表成功'); },
-        function (tx, error) {
-            alert('创建stu表失败:' + error.message);
-        });
-        });
+            tx.executeSql("create table if not exists LogonLocalUser (userID TEXT UNIQUE, userName TEXT, userStatus TEXT)",[] );});
     }
 
-    //添加数据
-    this.insert = function () {
+    // 添加数据
+    this.insert = function (uID,uName,uStatus) {
         var dataBase = _this.openDatabase();
-        var id = Math.random();
         dataBase.transaction(function (tx) {
-            tx.executeSql(
-        "insert into stu (id, name) values(?, ?)",
-        [id, '徐明祥'],
-        function () { alert('添加数据成功'); },
-        function (tx, error) {
-            alert('添加数据失败: ' + error.message);
-        });
-        });
-
+            tx.executeSql("insert into LogonLocalUser (userID, userName, userStatus) values(?, ?, ?)",[uID, uName,uStatus]);});
     }
 
-    // 查询
+    // 查询结果
     this.query = function () {
         var dataBase = _this.openDatabase();
         dataBase.transaction(function (tx) {
-            tx.executeSql(
-        "select * from stu", [],
-         function (tx, result) {
-             //result：SQLResultSet对象。
-             //其定义为：interface SQLResultSet {
-             //  readonly attribute long insertId;
-             //  readonly attribute long rowsAffected;
-             //  readonly attribute SQLResultSetRowList rows;
-             //};
-             //             alert(result);
-             $("#datalist").children().remove();
-             for (var i = 0; i < result.rows.length; i++) {
-
-
-                 var id = result.rows.item(i)['id'];
-                 var name = result.rows.item(i)['name'];
-                 var $dataItem = $("<div>Id:" + id + "&nbsp;&nbsp;&nbsp;&nbsp;name：" + name + " &nbsp;&nbsp; &nbsp; </div><br/>");
-
-                 $dataItem.append("<a  id='" + id + "' href='javascript:;'>把名字更新为徐明祥</a>&nbsp;");
-                 $dataItem.append("<a id='" + id + "' href='javascript:;'>把名字更新为祥叔</a>&nbsp;");
-                 $dataItem.append("<a id='" + id + "' href='javascript:;'>删除</a>&nbsp;");
-                 $($dataItem.find("a")[0]).click(function () {
-                     webSql.update($(this).attr("id"), '徐明祥');
-                 });
-
-                 $($dataItem.find("a")[1]).click(function () {
-                     webSql.update($(this).attr("id"), '祥叔');
-                 });
-
-                 $($dataItem.find("a")[2]).click(function () {
-                     webSql.del($(this).attr("id"));
-                     _this.query();
-                 });
-
-                 $("#datalist").append($dataItem);
-
-             }
-         },
-        function (tx, error) {
-            alert('查询失败: ' + error.message);
+            tx.executeSql("select * from LogonLocalUser", [],
+            function (tx, result) {
+                // 遍历数据集合
+                for (var i = 0; i < result.rows.length; i++) {
+                    // 这里可以做一些其他的事情了
+                    var uID = result.rows.item(i)['userID'];
+                    var uName = result.rows.item(i)['userName'];
+                    var uStatus = result.rows.item(i)['userStatus'];
+                }
+            });
         });
-        });
-
     }
 
     //更新数据
-    this.update = function (id, name) {
-
+    this.update = function (uID,uName,uStatus) {
         var dataBase = _this.openDatabase();
         dataBase.transaction(function (tx) {
-            tx.executeSql(
-        "update stu set name = ? where id= ?",
-        [name, id],
-         function (tx, result) {
-             _this.query();
-         },
-        function (tx, error) {
-            alert('更新失败: ' + error.message);
-        });
+            tx.executeSql("update LogonLocalUser set userName = ? where userID= ?",[uName, uID]);
         });
     }
 
     //删除数据
-    this.del = function (id) {
+    this.del = function (uID) {
         var dataBase = _this.openDatabase();
         dataBase.transaction(function (tx) {
-            tx.executeSql(
-        "delete from  stu where id= ?",
-        [id],
-         function (tx, result) {
-
-         },
-        function (tx, error) {
-            alert('删除失败: ' + error.message);
-        });
+            tx.executeSql("delete from  LogonLocalUser where userID= ?",[uID]);
         });
     }
 
@@ -142,9 +72,38 @@ webStorage.webSql = function () {
     this.dropTable = function () {
         var dataBase = _this.openDatabase();
         dataBase.transaction(function (tx) {
-            tx.executeSql('drop  table  stu');
+            tx.executeSql('drop  table  LogonLocalUser');
         });
     }
-
+    
+    // 根据用户ID判断是否存在保存的 ID
+    this.getUserID = function(uID){
+         var dataBase = _this.openDatabase();
+        dataBase.transaction(function (tx) {
+            tx.executeSql("select * from LogonLocalUser where userID=?", [uID],
+            function (tx, result) {
+                if(result.rows>0){
+                    return true;
+                }else{
+                    return false;
+                }
+            });
+        });       
+    }
+    
+    // 提取当前的用户ID
+    this.getUserID = function(){
+         var dataBase = _this.openDatabase();
+        dataBase.transaction(function (tx) {
+            tx.executeSql("select * from LogonLocalUser", [],
+            function (tx, result) {
+                if(result.rows>0){
+                    return result.rows.item(0)['userID'];
+                }else{
+                    return '';
+                }
+            });
+        });       
+    }
 
 }
